@@ -18,8 +18,9 @@ The project also tests the impact of key hyperparametrs like mini-batch size and
 
 1. Clone this repo (git clone <repo-url> cd <repo-folder)
 2. Install Required Dependencies: "pip install -r requirements.txt"
-3. Open the jupyter notebook
-4. Run all the cells within the notebook
+3. Run AutoROM --accept-license
+4. Open the jupyter notebook
+5. Run all the cells within the notebook
 
 ## Workflow/Methodology:
 
@@ -134,14 +135,40 @@ The agent selects actions using an ε-greedy policy, choosing the action with th
 
 ### Metrics, observations & comments of parameter change (W/ plots)
 
+- Across all three experiments, the agent initially performs very poorly, with average rewards close to -21, this shows near-random gameplay. Over time, all the different configurations show some sort of improvement which confirms that the agent is learning meaningful policies.
+
+- Experiment 1 demonstrates gradual improvement, ending around an average reward of approximately -16. While learning occurs, the progress is slow and unstable, suggesting inefficient parameter settings.
+
+- Experiment 2 shows the best improvement out of all 3, it reached an average reward near -11. This configuration shows faster convergence and the most stable performance, indicating that the chosen batch size and target update frequency effectively balance learning stability and adaptability.
+
+-  Experiment 3 also improves over time but converges to a lower performance level -14. The learning was less consistent, with higher variance in rewards. If more episodes were involved in training experiment 3 could have overtaken experiment 2 in being the best in terms of average rewards.  
+
 ### Simulation + Log Interpretation 
+- The simulation/training ran for 300 episodes for each experiment. 
+I made the training go for 300 episodes because after testing at 100 episodes and lower no significant changes were seen and so
+I found that by choosing 300 some actual changes began to occur.
 
-###  Best combo of batch size and update rate for target network
+- The log file shows that for experiment 1 it had a slow improvement and was quite noisy. It also took long to stablize.
+Experiment 2 had a strong upward trend and consistently improved.
+Experiment 3 was just as strong but was less stable than experiment 2. 
 
+###  Best combo of batch size and update rate for target network 
 
+- Based on the factors evaluated which are; speed, stability, and final performance, the best configuration is: Experiment 2(Batch Size =16, Target Update = 10)
 
+- The combination achieved:
+    - The highest average reward (-11)
+    - Faster learning compared to the other configurations
+    -  More stable convergence with less variance
 
-## Extra Notes:
+    The improved performance may suggest that:
+    - A moderate batch size provides stable gradient updates
+    - A balanced target update frequency prevents instability while allowing learning to adapt
+
+### Final Conclusion
+The results demonstrate that hyperparameter does significantly impact Deep Q-Network performance. In this case the batch size and target network update frequency determines both learning speed and stability. The optimal configuration achieves a balance between frequent learning updates and stable target estimation.
+
+### Extra Notes:
 
 
 # 🤝 Contributing
