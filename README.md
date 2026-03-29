@@ -169,6 +169,7 @@ Experiment 3 was just as strong but was less stable than experiment 2.
 The results demonstrate that hyperparameter does significantly impact Deep Q-Network performance. In this case the batch size and target network update frequency determines both learning speed and stability. The optimal configuration achieves a balance between frequent learning updates and stable target estimation.
 
 ### Extra Notes:
+- Because training takes so long the final simulation where it uses the fully trained agent is done by using the saved model that the program saves after training is complete.
 
 
 # 🤝 Contributing
